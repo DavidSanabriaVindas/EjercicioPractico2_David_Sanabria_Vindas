@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/funcion")
+@RequestMapping("/funciones")  
 public class FuncionesController {
     
     @Autowired
@@ -20,26 +20,33 @@ public class FuncionesController {
     @Autowired
     private PeliculaService peliculaService;
     
+    @GetMapping({"", "/"})
+    public String redirigirAListado() {
+        return "redirect:/funciones/listado";
+    }
+
+
     @GetMapping("/listado")
     public String inicio(Model model) {
         List<Funciones> funciones = funcionesService.getFunciones();
         model.addAttribute("funciones", funciones);
         model.addAttribute("totalFunciones", funciones.size());
         model.addAttribute("funcion", new Funciones()); 
-        return "/funcion/listado";
+        return "/funciones/listado";  
     }
     
     @GetMapping("/nueva")
     public String nuevaFuncion(Funciones funcion, Model model) {
+        model.addAttribute("funcion", funcion); 
         var peliculas = peliculaService.getPeliculas();
         model.addAttribute("peliculas", peliculas);
-        return "/funcion/modifica";
+        return "/funciones/modifica";  
     }
     
     @PostMapping("/guardar")
     public String guardarFuncion(Funciones funcion) {
         funcionesService.save(funcion);
-        return "redirect:/funcion/listado";
+        return "redirect:/funciones/listado";  
     }
     
     @GetMapping("/eliminar/{idFuncion}")
@@ -47,7 +54,7 @@ public class FuncionesController {
         Funciones funcion = new Funciones(); 
         funcion.setIdFuncion(idFuncion);
         funcionesService.delete(funcion);
-        return "redirect:/funcion/listado";
+        return "redirect:/funciones/listado";  
     }
     
     @GetMapping("/modificar/{idFuncion}")
@@ -60,6 +67,6 @@ public class FuncionesController {
         var peliculas = peliculaService.getPeliculas();
         model.addAttribute("peliculas", peliculas);
         
-        return "/funcion/modifica";
+        return "/funciones/modifica";  
     }
 }

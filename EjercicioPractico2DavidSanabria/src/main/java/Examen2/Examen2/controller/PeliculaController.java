@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/pelicula")
 public class PeliculaController {
 
+     @GetMapping({"", "/"})
+    public String redirigirAListado() {
+        return "redirect:/pelicula/listado";
+    }
     @Autowired
     private PeliculaService peliculaService;
 

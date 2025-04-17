@@ -14,6 +14,10 @@ public class UsuariosController {
     @Autowired
     private UsuariosService usuariosService;
     
+    @GetMapping({"", "/"})
+    public String redirigirAListado() {
+        return "redirect:/usuario/listado";
+    }
     // Listado de usuarios
     @GetMapping("/listado")
     public String listado(Model model) {
