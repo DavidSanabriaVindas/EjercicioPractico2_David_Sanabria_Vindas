@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Cinemark</title>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        <section class="main-content">
+            <div class="container mt-4">
+                <article class="text-center">
+                    <header>
+                        <h1 class="mb-4">Video de Youtube sobre Cinemark</h1>
+                    </header>
+                    <div class="d-flex justify-content-center">
+                        <div class="ratio ratio-16x9" style="max-width: 923px;">
+                            <iframe
+                                src="https://www.youtube.com/embed/V8zplHAAjBM"
+                                title="Apertura Cinemark Costa Rica"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <footer th:replace="~{layout/plantilla :: footer}"/>     
+    </body>
+</html>
